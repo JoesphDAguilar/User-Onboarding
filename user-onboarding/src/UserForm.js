@@ -15,22 +15,21 @@ export default function UserForm(props) {
     }
 
     const onChange = evt => {
-        
+        const {name, value, checked, type} = evt.target;
+        const valueToUse = type === 'checkbox' ? checked : value;
+        change(name, valueToUse);
     }
 
     return (
         <form onSubmit={onSubmit}>
             <h2>Add a User</h2>
-
-            {/*Disable Button here */}
-
             {/*Render Validation errors here */}
 
             <div>
                 <h4>General Information</h4>
                 <label>First Name
                     <input 
-                        value={values.first_name}
+                        value={values.name}
                         onChange={onChange}
                         name='firstName'
                         type='text'
@@ -39,7 +38,7 @@ export default function UserForm(props) {
 
                 <label>Last Name
                     <input
-                        value={values.last_name}
+                        value={values.name}
                         onChange={onChange}
                         name='lastName'
                         type='text'
@@ -99,6 +98,7 @@ export default function UserForm(props) {
                         checked={values.tos}
                     />
                 </label>
+                <button>Submit</button>
             </div>
         </form>
     )
