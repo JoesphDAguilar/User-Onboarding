@@ -1,10 +1,15 @@
 import * as yup from 'yup';
 
 const userSchema = yup.object().shape({
-    name: yup
+    firstName: yup
         .string()
         .trim()
-        .required("First and last name is required, dude!")
+        .required("First name is required, dude!")
+        .min(2, "Name must be two characters long, bud!"),
+    lastName: yup
+        .string()
+        .trim()
+        .required("Last name is required, dude!")
         .min(2, "Name must be two characters long, bud!"),
     role: yup
         .string()
@@ -24,7 +29,9 @@ const userSchema = yup.object().shape({
         .string()
         .required('Need to enter a password, pal!')
         .min(8, 'Password is too short - Should be at least 8 characters, friendO'),
-        tos: yup.boolean()
+        tos: yup
+            .boolean()
+            .oneOf([true], 'You must accept terms and conditions, partner')
 })
 
 export default userSchema;

@@ -23,7 +23,14 @@ export default function UserForm(props) {
     return (
         <form onSubmit={onSubmit}>
             <h2>Add a User</h2>
-            {/*Render Validation errors here */}
+
+            <div>
+                <div>{errors.name}</div>
+                <div>{errors.role}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.tos}</div>
+            </div> 
 
             <div>
                 <h4>General Information</h4>
@@ -98,7 +105,7 @@ export default function UserForm(props) {
                         checked={values.tos}
                     />
                 </label>
-                <button>Submit</button>
+                <button disabled={disabled}>Submit</button>
             </div>
         </form>
     )
